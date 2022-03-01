@@ -1,0 +1,20 @@
+# Recursion-Backtracking
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        
+        def permute(s,l,r):
+            
+            if l==r:
+                res.append(s[:])
+            
+            else:
+                for i in range(l,r+1):
+                    s[l],s[i]=s[i],s[l]
+                    permute(s,l+1,r)
+                    s[l],s[i]=s[i],s[l]       #//backtracking
+                    
+        permute(nums,0,len(nums)-1)    
+        
+        return res
+        
