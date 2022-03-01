@@ -1,0 +1,22 @@
+def Csum(ind,target,arr,ans,ds):  #Pick and Non-pick method
+    
+    if(ind == len(arr)):
+        if(target == 0):    #Found required combination
+            ans.append(ds.copy())   #Copy all data in final list
+        return
+    
+    if(arr[ind] <= target):
+        ds.append(arr[ind])   
+        Csum(ind,target-arr[ind],arr,ans,ds)  
+        ds.pop()
+    
+    Csum(ind+1,target,arr,ans,ds)
+            
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        ds=[]
+        ans=[]
+        Csum(0,target,candidates,ans,ds)
+        return ans
+        
+        
