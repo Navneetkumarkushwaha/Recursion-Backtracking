@@ -1,0 +1,15 @@
+class Solution:
+    global result
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        self.result=[]
+        self.solve(0,[],nums)
+        return self.result
+    def solve(self,i,ds,nums):
+        if i==len(nums):
+            self.result.append(ds[:])
+            return 
+        ds.append(nums[i])
+        self.solve(i+1,ds,nums)
+        ds.pop()
+        self.solve(i+1,ds,nums)
+        
