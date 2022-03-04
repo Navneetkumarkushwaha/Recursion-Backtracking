@@ -1,21 +1,32 @@
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
-        def backtrack(string,word,res):
-            if not string:
-                res.append(word)
-                return None
-            
-            if string[0].isalpha():
-                
-                backtrack(string[1:],word+string[0].upper(),res)
-                backtrack(string[1:],word+string[0].lower(),res)
-            
-            else:
-                backtrack(string[1:],word+string[0],res)
-                
-        word=''
-        string=s
-        res=[]
-        backtrack(string,word,res)
+        # Purpose: show all letter permutations of a string
+        # Method: Backtracking (Recursion)
+        # Intuition: slice the string till end. For alpha, append lower and upper. For num, append.
+        
+        # init
+        string = s
+        word = ''
+        res = []
+        
+        # find 
+        self.backtrack(string, word, res)
+        
+        # return
         return res
         
+    
+    def backtrack(self, string, word, res):
+        # corner case: end of string 
+        if not string:
+            res.append(word)
+            return None
+        
+        # For alpha, append lower and upper
+        if string[0].isalpha():
+            self.backtrack(string[1:], word + string[0].upper(), res)
+            self.backtrack(string[1:], word + string[0].lower(), res)
+        
+        # For num, append
+        else:
+            self.backtrack(string[1:], word + string[0], res)
