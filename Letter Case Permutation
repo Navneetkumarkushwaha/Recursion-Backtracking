@@ -1,0 +1,21 @@
+class Solution:
+    def letterCasePermutation(self, s: str) -> List[str]:
+        def backtrack(string,word,res):
+            if not string:
+                res.append(word)
+                return None
+            
+            if string[0].isalpha():
+                
+                backtrack(string[1:],word+string[0].upper(),res)
+                backtrack(string[1:],word+string[0].lower(),res)
+            
+            else:
+                backtrack(string[1:],word+string[0],res)
+                
+        word=''
+        string=s
+        res=[]
+        backtrack(string,word,res)
+        return res
+        
